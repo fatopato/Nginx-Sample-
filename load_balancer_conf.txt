@@ -1,0 +1,14 @@
+upstream gtservers {
+    # load balancer methods: least_conn, ip_hash, ve round robin(default)	
+    server 127.0.0.1:8091;
+    server 127.0.0.1:8092;
+    server 127.0.0.1:8093;
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://gtservers;
+    }
+}
